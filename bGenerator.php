@@ -41,7 +41,8 @@ class bGenerator {
 	
 	function pd_X($X_pos, $Y_pos)
 	{
-		echo '<span class="width_selector">Width: <select onchange="if (this.selectedIndex) {disable_childs(this);update_Result();}" _X="'. $X_pos .'" _Y="'. $Y_pos .'" id="X;'. $X_pos .';'.$Y_pos.'" value="1">';
+// 		echo '<span class="width_selector">Width: <select onchange="if (this.selectedIndex) {disable_childs(this);update_Result();}" _X="'. $X_pos .'" _Y="'. $Y_pos .'" id="X;'. $X_pos .';'.$Y_pos.'" value="1">';
+		echo '<span class="width_selector">Width: <select onchange="disable_childs(this);update_Result();" _X="'. $X_pos .'" _Y="'. $Y_pos .'" id="X;'. $X_pos .';'.$Y_pos.'" value="1">';
 		for($x = 1; $x <= $this->X_max - $X_pos; $x++)
 		{
 			echo '<option value="'.$x.'">'.$x.' bred</option>';
@@ -75,7 +76,7 @@ class bGenerator {
 	
 	function draw_table()
 	{
-		echo '<table id="editorTable" name="'.$x.';'.$y.'" class="editor" x="'. $this->X_max .'" y="'. $this->Y_max .'">';
+		echo '<table id="editorTable" XY_Size="'.$this->X_max.';'.$this->Y_max.'" class="editor" x="'. $this->X_max .'" y="'. $this->Y_max .'">';
 
 		echo '<button name="gen" onclick="update_Result();">Generer</button>';
 		

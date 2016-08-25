@@ -46,23 +46,62 @@ function update_Result()
 	}
 	document.getElementById("resultTable").innerHTML = result;
 }
-function disable_childs(sender)
+
+function disable_childs(sender_X)
 {
-	var index = sender.selectedIndex;
+	var index = sender_X.selectedIndex;
 	
-	var id = sender.id.split(';');
-	var xy = document.getElementById("editorTable").name.spilt(";");
+	var sender_pos = sender_X.id.split(';');
+	
+	var v = document.getElementById("editorTable").getAttribute("XY_Size");
+	var xy_size = v.split(";");
+	
 	var y = 0;
-	for (x = 0; x < index; x++)
+	
+	for (x = 0; x < xy_size[0]; x++)
 	{
-	  var currentEnable = document.getElementById("enable;"+ (parseInt(id[1]) + x + 1) + ";" + (parseInt(id[2]) + y));
-	  var currentX = document.getElementById("X;"+ (parseInt(id[1]) + x + 1) + ";" + (parseInt(id[2]) + y));
-	  var t = document.getElementById("editorTable");
-	  var wp = t.x;
-	  if(currentEnable.value == "enable")
-		  currentEnable.value = "disable";
-	  
-	  currentX.hidden = true;
+		if(x > parseInt(sender_pos[1]) && x <= (parseInt(sender_pos[1]) + index) )
+		{
+			var currentEnable = document.getElementById("enable;"+ x + ";" + y);
+			var currentX = document.getElementById("X;" + x + ";" + y);
+			var currentY = document.getElementById("Y;" + x + ";" + y);
+			var currentTXT = document.getElementById("txt;" + x + ";" + y);
+			var currentFunc = document.getElementById("func;" + x + ";" + y);
+
+			if(currentEnable.value == "enable")
+			{
+				currentEnable.value = "disable";
+				currentEnable.hidden = true;
+				currentX.hidden = true;
+				currentY.hidden = true;
+				currentTXT.hidden = true;
+				currentFunc.hidden = true;
+			}
+		}
+		else
+		{
+			if(x > parseInt(sender_pos[1]) + index)
+			{
+				var currentEnable = document.getElementById("enable;"+ x + ";" + y);
+				var currentX = document.getElementById("X;" + x + ";" + y);
+				var currentY = document.getElementById("Y;" + x + ";" + y);
+				var currentTXT = document.getElementById("txt;" + x + ";" + y);
+				var currentFunc = document.getElementById("func;" + x + ";" + y);
+				
+				if(currentEnable.value == "disable")
+				{
+					currentEnable.value = "enable";
+					currentEnable.hidden = false;
+					currentX.hidden = false;
+					currentY.hidden = false;
+					currentTXT.hidden = false;
+					currentFunc.hidden = false;
+				}
+				else
+					break;
+			}
+			else
+				continue;
+		}
 	}
-	//sender.event();
 }
