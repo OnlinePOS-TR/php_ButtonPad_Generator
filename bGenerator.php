@@ -2,6 +2,9 @@
 <head>
 <link rel="stylesheet" type="text/css" href="bGenerator.css">
 <script src="bGenerator.js"></script>
+<script>
+<?php include 'js_gen.php';?>
+</script>
 </head>
 <?php
 //7x6
@@ -33,7 +36,7 @@ class bGenerator {
 	
 	function pd_enable($X_pos, $Y_pos)
 	{
-		echo '<select class="enable_selector" id="enable;'.$X_pos.';'.$Y_pos.'">';
+		echo '<select onchange="update_Result();" class="enable_selector" id="enable;'.$X_pos.';'.$Y_pos.'">';
 		echo '<option class="enable_selector" value="enable">Enabled</option>';
 		echo '<option value="disable">Disabled</option>';
 		echo '</select>';
@@ -42,7 +45,7 @@ class bGenerator {
 	function pd_X($X_pos, $Y_pos)
 	{
 // 		echo '<span class="width_selector">Width: <select onchange="if (this.selectedIndex) {disable_childs(this);update_Result();}" _X="'. $X_pos .'" _Y="'. $Y_pos .'" id="X;'. $X_pos .';'.$Y_pos.'" value="1">';
-		echo '<span class="width_selector">Width: <select onchange="disable_childs(this);update_Result();" _X="'. $X_pos .'" _Y="'. $Y_pos .'" id="X;'. $X_pos .';'.$Y_pos.'" value="1">';
+		echo '<span class="width_selector">Width: <select onchange="update_childs(this);update_Result();" _X="'. $X_pos .'" _Y="'. $Y_pos .'" id="X;'. $X_pos .';'.$Y_pos.'" value="1">';
 		for($x = 1; $x <= $this->X_max - $X_pos; $x++)
 		{
 			echo '<option value="'.$x.'">'.$x.' bred</option>';
@@ -51,7 +54,7 @@ class bGenerator {
 	}
 	function pd_Y($X_pos, $Y_pos)
 	{
-		echo '<span class="height_selector">Height: <select class="height_selector" id="Y;'.$X_pos.';'.$Y_pos.'" value="1">';
+		echo '<span class="height_selector">Height: <select onchange="update_childs(this);update_Result();" class="height_selector" id="Y;'.$X_pos.';'.$Y_pos.'" value="1">';
 		for($y = 1; $y <= $this->Y_max - $Y_pos; $y++)
 		{
 			echo '<option value="'.$y.'">'.$y.' h&oslash;j</option>';
@@ -74,7 +77,7 @@ class bGenerator {
 		echo '</select>';
 	}
 	
-	function draw_table()
+	function draw_Editor_Table()
 	{
 		echo '<table id="editorTable" XY_Size="'.$this->X_max.';'.$this->Y_max.'" class="editor" x="'. $this->X_max .'" y="'. $this->Y_max .'">';
 
@@ -107,11 +110,16 @@ class bGenerator {
 
 		echo '</table>';	
 	}
+	function draw_Result_Table()
+	{
+		echo '<table id="resultTable" class="result"></table>';
+	}
 } // end of class
 
 $a = new bGenerator(5, 5);
-$a->draw_table();
+$a->draw_Editor_Table();
+$a->draw_Result_Table();
 
 ?>
-<table id="resultTable" class="result"></table>
+
 </body>

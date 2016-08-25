@@ -45,7 +45,7 @@ td
 /* JS styles */
 table.result
 {
-	background-color: red;
+	background-color: gray;
 	/*border: thin;*/
 	/*border-color: black;*/
 	border: 1px solid black;
@@ -58,5 +58,13 @@ table.result
 	text-align: center;
 	width: 100%;
 	height: 100%;
-word-wrap: break-all;
+	word-wrap: break-all;
+}
+.btn_empty
+{ 
+	background-color: red;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	word-wrap: break-all;
 }
