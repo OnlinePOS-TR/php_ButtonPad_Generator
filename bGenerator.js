@@ -52,6 +52,7 @@ function update_Result()
 	document.getElementById("resultTable").innerHTML = result;
 }
 
+ $(.editorTable)
 function update_childs(sender_X)
 {
 	console.log("------------------- Do Update");	
@@ -106,7 +107,13 @@ function update_childs(sender_X)
 			var cur_Btn = document.getElementById("enable;"+ cur_X + ";" + cur_Y);
 			console.log("--------- cur_Btn id: " + cur_Btn.id);
 			
-			if(cur_Y > 1 && cur_Y <= ChangeBtn_height)
+			
+			// if x = ChangeBtn_X
+			if(cur_X = ChangeBtn_X && cur_Y == 0 && cur_Y <= ChangeBtn_height)
+			{
+				console.log("---------- skip Y - X=0");
+			}
+			else if(cur_Y >= 1 && cur_Y <= ChangeBtn_height)
 			{
 				console.log("-------------------------------------------------- disable Y");
 				cur_Btn.value = "disable";

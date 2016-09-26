@@ -2,9 +2,6 @@
 <head>
 <link rel="stylesheet" type="text/css" href="bGenerator.css">
 <script src="bGenerator.js"></script>
-<script>
-<?php include 'js_gen.php';?>
-</script>
 </head>
 <?php
 //7x6
